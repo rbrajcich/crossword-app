@@ -1,0 +1,13 @@
+{
+    "branches": ["master"],
+    "repositoryUrl": "git@github.com:rbrajcich/crossword-app.git",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      ["@semantic-release/exec", {
+        "prepareCmd": "./ci/prepare-release.sh ${nextRelease.version}",
+        "publishCmd": "./ci/publish-release.sh ${nextRelease.version}"
+      }],
+      "@semantic-release/github"
+    ]
+  }
