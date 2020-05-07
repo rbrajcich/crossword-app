@@ -8,13 +8,13 @@ Install these dependencies before moving on:
 
 
 ### To run server unit tests:
-```makefile
+```bash
 # Copy tests into a golang docker container and run it to execute them
 $> ./run-tests.sh
 ```
 
 ### To build container and run it:
-```makefile
+```bash
 # Build server and tag docker image as crossword-app-server:local-build
 $> ./make-container.sh
 
@@ -24,7 +24,7 @@ $> docker run --name <some_name> --rm -d -p 8080:8080 crossword-app-server:local
 Open a web browser and navigate to http://localhost:8080/Enter-Your-Name.
 You should see a page saying "Hello, Your-Name!"
 
-```makefile
+```bash
 # Stop the server container
 $> docker stop <some_name>
 ```
