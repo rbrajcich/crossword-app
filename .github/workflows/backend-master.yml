@@ -34,8 +34,6 @@ jobs:
     steps:
     - name: Checkout Commit Code
       uses: actions/checkout@v2
-    - name: Pull Built Backend Container
-      run: docker pull rbrajcich/crossword-app-server-dev:job-$GITHUB_RUN_ID
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
