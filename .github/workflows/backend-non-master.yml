@@ -1,8 +1,8 @@
-name: Backend Test, Build, Release
+name: Backend Test and Build
 
 on:
   push:
-    branches: [ master ]
+    branches-ignore: [ master ]
     
 jobs:
 
@@ -26,26 +26,3 @@ jobs:
       run: |
         echo $DOCKERHUB_TOKEN | docker login -u rbrajcich --password-stdin
         docker push rbrajcich/crossword-app-server-dev
-
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    needs: test-build-publish
-    steps:
-    - name: Checkout Commit Code
-      uses: actions/checkout@v2
-    - name: Pull Built Server Container
-      run: docker pull rbrajcich/crossword-app-server-dev:job-$GITHUB_RUN_ID
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - name: Install semantic-release and Plugins
-      run: |
-        npm install -g semantic-release@17
-        npm install -g @semantic-release/exec@5
-    #- name: Release with semantic-release
-    #  env:
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #    DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-    #  run: npx semantic-release
