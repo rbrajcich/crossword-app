@@ -1,0 +1,28 @@
+name: Backend Build and Release
+
+on:
+  push:
+    branches: [ master ]
+    
+    jobs:
+
+      test-build-publish:
+        name: Run Tests, Build, Publish
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Commit Code
+          uses: actions/checkout@v2
+        - name: Run Unit Tests
+          run: ./backend/run-tests.sh
+        - name: Build Container
+          run: ./backend/make-container.sh
+        - name: Archive the Image
+          run: docker save -o backend-container-img.tar crossword-app-server:local-build
+        - name: Upload Image as Build Artifact
+          uses: actions/upload-artifact@v1
+          with:
+            name: backend-container
+            path: backend-container-img.tar
+        - name: Tag Image for Dev Publish
+          run: docker tag crossword-app-server:local-build rbrajcich/crossword-app-server-dev:job-$GITHUB_RUN_ID
+        
