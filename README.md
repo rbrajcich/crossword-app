@@ -1,8 +1,9 @@
 # crossword-app
+
 [![Test, Build, Release](https://github.com/rbrajcich/crossword-app/workflows/Test,%20Build,%20Release/badge.svg)](https://github.com/rbrajcich/crossword-app/actions?query=workflow%3A%22Test%2C+Build%2C+Release%22+branch%3Amaster)&nbsp;&nbsp;&nbsp;&nbsp;
 [![Latest Backend Image](https://img.shields.io/docker/v/rbrajcich/crossword-app-server?color=%230db7ed&label=Latest%20Backend%20Image&logo=Docker)](https://hub.docker.com/r/rbrajcich/crossword-app-server/tags)&nbsp;&nbsp;&nbsp;&nbsp;
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-***
+
 ## Getting Started
 
 Install these dependencies before moving on:
