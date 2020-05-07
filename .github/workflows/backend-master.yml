@@ -16,13 +16,11 @@ jobs:
       run: ./backend/run-tests.sh
     - name: Build Container
       run: ./backend/make-container.sh
-    - name: Archive the Image
-      run: docker save -o backend-container-img.tar crossword-app-server:local-build
-    - name: Upload Image as Build Artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: backend-container
-        path: backend-container-img.tar
     - name: Tag Image for Dev Publish
-      run: docker tag crossword-app-server:local-build rbrajcich/crossword-app-server-dev:job-$GITHUB_RUN_ID
-        
+      run: |
+        docker tag crossword-app-server:local-build rbrajcich/crossword-app-server-dev:job-$GITHUB_RUN_ID
+        echo "Tagged as rbrajcich/crossword-app-server-dev:job-${GITHUB_RUN_ID}"
+    - name: Push Image to Docker Hub
+      run: |
+        echo $DOCKERHUB_TOKEN | docker login -u rbrajcich --password-stdin
+        docker push rbrajcich/crossword-app-server-dev
