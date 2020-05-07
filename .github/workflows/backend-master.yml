@@ -16,11 +16,13 @@ jobs:
       run: ./backend/run-tests.sh
     - name: Build Container
       run: ./backend/make-container.sh
-    - name: Tag Image for Dev Publish
+    - name: Tag Dev Image with Job Run Id
       run: |
         docker tag crossword-app-server:local-build rbrajcich/crossword-app-server-dev:job-$GITHUB_RUN_ID
         echo "Tagged as rbrajcich/crossword-app-server-dev:job-${GITHUB_RUN_ID}"
-    - name: Push Image to Docker Hub
+    - name: Publish Image to Docker Hub Dev Repo
+      env:
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         echo $DOCKERHUB_TOKEN | docker login -u rbrajcich --password-stdin
         docker push rbrajcich/crossword-app-server-dev
