@@ -9,7 +9,7 @@ cd "${BASE_DIR}"
 
 # Build the docker file which will compile the server executable; capture output
 echo "Building docker container for tests..."
-DOCKER_BUILD_OUTPUT=$(docker build -q -f ./build/package/test.Dockerfile .)
+DOCKER_BUILD_OUTPUT=$(docker build -q --target unittest-img -f ./build/package/Dockerfile .)
 
 # If the container build failed, then don't go any further
 if [ -z $DOCKER_BUILD_OUTPUT ]; then

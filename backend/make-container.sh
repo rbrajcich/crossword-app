@@ -9,4 +9,4 @@ BASE_DIR=$(dirname $0)
 cd "${BASE_DIR}"
 
 # Build the docker file which will compile the server executable
-docker build -f ./build/package/Dockerfile --tag $DOCKER_IMAGE .
+docker build -f ./build/package/Dockerfile --target prod-img --tag $DOCKER_IMAGE .
